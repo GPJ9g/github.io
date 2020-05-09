@@ -1,0 +1,486 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        background: #2c3e50;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        width: 100vw;
+        height: 100vh;
+        padding: 80px;
+    }
+    main{
+      position: absolute;
+        bottom: 100px;
+        left: 12px;
+    }
+    main>div:first-child{
+      width: 40px;
+      height: 65px;
+      background: #d9513c;
+    /*  text-align: center;*/
+      line-height: 65px;
+      font-size: 3em;
+      color:#eee;
+      position: absolute;
+    }
+    .back{
+      color:#000;
+    }
+    main>div:last-child{
+      /*width: 120px;*/
+      height: 65px;
+      background: #d9513c;
+      position: absolute;
+      left:50px;
+      display: none;
+    }
+    main>div:last-child>div>p{
+        color: #eee;
+        width: 50px;
+        height: 30px;
+        line-height: 30px;
+        margin-left: 10px;
+        overflow: hidden;
+        display: inline-block;
+        cursor:pointer;
+    }
+   
+    #create-div{
+         width: 1000px;
+        height: 30px;
+        position: absolute;
+        display: inline;
+        left: 125px;
+    }
+    .LB *{
+        display: inline-block;
+    }
+    .NO *{
+        display: none;
+    }
+    #create-div p{
+        padding: 5px;
+        background: #d9513c;
+        color: #eee;
+    }
+    
+    section{
+        position: absolute;
+        left:50%-400px;
+        top:20%;
+    }
+    .section{
+        width: 800px;
+        height: 400px;
+        background: #eee;
+    }
+    #num{
+        background: #d9512c;
+        width: 100px;
+        height: 300px;
+        position: absolute;
+        bottom:10px;
+        left: 80px;
+    }
+    #stack{
+        width:100px;
+        height: 40px;
+        /*background: #3498DB;*/
+        /*border: solid 1px #ccc;*/
+        position: absolute;
+        bottom: 0;
+    }
+    #stack>div{
+        width: 100px;
+        height: 40px;
+        background: #F1C40F;
+        margin-bottom: -82px;
+        text-align: center;
+        line-height: 40px;
+    }
+    .table{
+        width: 400px;
+        height: 60px;
+        position: absolute;
+        bottom: 10px;
+        right: 100px;
+        background: #d9512c;
+    }
+    #arr>div{
+        width: 30px;
+        height: 60px;
+        background: #F1C40F; 
+        display: inline-block;
+        margin-left: 2px;
+        text-align: center;
+        line-height: 60px;
+    }
+    #origin{
+         width: 500px;
+        height: 60px;
+        position: absolute;
+        top: 25px;
+        right: 100px;
+        background: #d9512c;
+    }
+    #origin>div{
+        width: 30px;
+        height: 60px;
+        background: #F1C40F; 
+        display: inline-block;
+        margin-left: 2px;
+        text-align: center;
+        line-height: 60px;
+    }
+
+    contorl{
+        position: absolute;
+        bottom: 250px;
+        left: 12px; 
+        background: #d9513c;
+    }
+    contorl>div{
+        display: inline-block;
+        width: 60px;
+        height: 40px;
+        line-height: 40px;
+        color:#eeeeee;
+        text-align: center;
+    }
+
+    visual{
+        position: absolute;
+        right:20px;
+        bottom:20px;
+    }
+    visual>div{
+      margin-top:5px;
+      background:#d9512c;
+      display: none;
+    }
+    .V_second>p{
+      padding: 2px 25px;
+    }
+    .striking{
+      background: #F1C40F;
+    }
+    .V_three>p{
+      padding: 2px 25px;
+    }
+</style>
+</head>
+<body>
+    <section>
+        <div id='origin'>
+        </div>
+        <div class='section'>
+            <div id='num'>
+                <div id='stack'>
+                </div>
+            </div>
+        </div>
+        <div class='table'>
+            <ul id='arr'>
+            </ul>
+        </div>
+    </section>
+
+  <contorl>
+    <div id='speed'>加速</div>
+    <div id='slow'>减速</div>
+    <div id='stop'>暂停</div>
+  </contorl>
+
+  <main>
+    <div>></div>
+    <div>
+            <div>
+                <p id='create'>创建</p>
+                <div class='NO' id='create-div'>
+                    <input type="text" id='text' value='1+12*(3+4)'>
+                    <p id='btn1'>执行</p>
+                </div>
+            </div>
+            <div>
+                <p id='btn2'>计算</p>
+            </div>       
+    </div>
+  </main>
+
+  <visual>    
+          <div class="V-frist"><</div>
+          <div class="V_second">
+              <p>数字直接入队</p>
+              <p>'(' 直接入栈</p>
+              <p>遇到 ')' 则持续出栈至遇到'('停止</p>
+              <p>如果遇到运算符</p>
+              <p style="text-indent:2em">栈为空 || 当前运算符优先级较高 || 栈顶是'('字符 入栈</p>
+              <p style="text-indent:2em">栈顶元素依次出栈 直至新操作符比栈顶优先级高 新操作符入栈</p>
+              <p>遍历结束 输出栈中所有元素</p>
+          </div>
+          <div class='V_three'>
+              <p>数字直接入栈</p>
+              <p>遇到操作符 将栈顶的两个元素 进行运算入栈</p>
+          </div>   
+  </visual>
+<script src='./static/assets/vendors/jquery/jquery.min.js'></script>
+<script>
+    // 二级菜单的显示消失
+  $('main>div:first-child').click(function(){
+    if($(this).text() == '>'){
+      $(this).text('<')
+      $('main>div:last-child').css('display','inline').animate({width:120}, 500,'swing')
+    }else if($(this).text() == '<'){
+      $(this).text('>')
+      $('main>div:last-child').animate({width:0}, 500,'swing',function(){
+                $('main>div:last-child').css('display','none')
+            })
+    }
+  })
+
+  $('#create').click(function(){
+      if($('#create-div').hasClass('LB')){
+         $('#create-div').removeClass('LB').addClass('NO')
+      }else 
+      if($('#create-div').hasClass('NO')){
+         $('#create-div').removeClass('NO').addClass('LB')
+      }   
+    })
+//=========================================================================================
+//栈 
+  class Stack {
+  constructor() {
+    this.stack = []
+    this.max = 0
+    this.opts = {
+      '+': 1,
+      '-': 1,
+      '*': 5,
+      '/': 5,
+      '(': 10,
+      ')': 10
+    }
+  }
+  in(char) {
+    this.stack.push(char)
+    this.max = this.opts[this.stack[this.stack.length - 1]]
+  }
+  out() {
+    let pop = this.stack.pop()
+    this.max = this.opts[this.stack[this.stack.length - 1]]
+    return pop
+  }
+  empty() {
+    return !this.stack.length
+  }
+  last() {
+    return this.stack[this.stack.length - 1]
+  }
+}
+//======================================================================
+//中序转后序及其动画
+function transform(str) {
+  // 模拟栈 存储运算操作符
+  var stack = new Stack()
+  // 后序表达式数组
+  var postfixExp = []
+  // 切分中序表达式
+  str = str2arr(str)
+  // 初始化
+  init()
+  $('.V_second').show()
+  $('.V_three').hide()
+  // 遍历中序表达式数组创建div放入原始数组
+  for(var i = 0; i < str.length; i++){
+    $('<div/>').text(str[i]).appendTo($origin)
+  }
+  // 遍历处理过后的中序表达式
+  i=0
+  window.time1 = setInterval(function(){
+    $('#origin>div:first-child').fadeOut(step*0.6,function(){
+        $(this).remove()
+    })
+    let item = str[i]
+    if(!isNaN(Number(item))) { // 数字直接放入数组
+
+      $(".V_second p").eq(0).addClass('striking').siblings("p").removeClass('striking')
+
+      postfixExp.push(item)
+      // 创建div放进数组里
+      $('<div/>').text(item).appendTo($arr)
+    } else if (item === '(') { // '(' 直接入栈
+
+    $(".V_second p").eq(1).addClass('striking').siblings("p").removeClass('striking')
+
+      stack.in(item)
+      // 创建div放入堆栈
+      $('<div/>').text(item).appendTo($stack)
+    } else if (item === ')') { // 遇到 ')' 则持续出栈至遇到'('停止
+
+    $(".V_second p").eq(2).addClass('striking').siblings("p").removeClass('striking')
+
+      let top = stack.out()
+      while (top && top !== '(') {
+        postfixExp.push(top)
+        // 删除堆栈顶上元素并将其加入到数组中
+        $('#stack>div:last-child').text(top).css('width','0').remove()
+        $('<div/>').text(top).appendTo($arr)
+        top = stack.out()
+        if(top == '('){
+            $('#stack>div:last-child').text(top).css('width','0').remove()
+        }
+      }
+    }else if (stack.opts[item]) { // 合法的 加减乘除字符
+      if (stack.empty() || stack.opts[item] > stack.max || stack.last() === '(') {
+         //栈为空 || 当前运算符优先级较高 || 栈顶是'('字符 入栈
+        $(".V_second p").eq(4).addClass('striking').siblings("p").removeClass('striking')
+
+        stack.in(item)
+        // 创建div放进堆栈里
+        $('<div/>').text(item).appendTo($stack)
+      } else {
+        // 栈顶元素依次出栈 直至新操作符比栈顶优先级高 新操作符入栈
+        $(".V_second p").eq(5).addClass('striking').siblings("p").removeClass('striking')
+
+        let top = stack.last() 
+        let max = stack.opts[item] 
+        // 遍历结束 输出栈中所有元素
+        while(top && max <= stack.opts[stack.last()] && stack.last() !== '(') {
+            // 删除堆栈顶上元素并将其加入到数组中
+            $('<div/>').text(top).appendTo($arr)
+            $('#stack>div:last-child').text(top).css('width','0').remove()
+          postfixExp.push( stack.last() )
+          top = stack.out()
+        }
+        $('<div/>').text(item).appendTo($stack)
+        stack.in(item)
+      }
+    }
+    i++
+   
+    if(i >= str.length){
+        clearInterval(window.time1)
+        $(".V_second p").eq(6).addClass('striking').siblings("p").removeClass('striking')
+         // 遍历完成所有数 结束
+        while(!stack.empty()) {
+                $('<div/>').text( stack.last() ).appendTo($arr)
+                $('#stack>div:last-child').text(top).css('width','0').remove()
+                 postfixExp.push( stack.out() )    
+          }
+        // console.log(postfixExp,getResult(postfixExp))
+        // getResult(postfixExp)
+        window.postfixExp=postfixExp
+    }
+  },step)
+}
+
+
+function str2arr(str) {
+  str = str.split('+').join('|+|')
+  str = str.split('-').join('|-|')
+  str = str.split('*').join('|*|')
+  str = str.split('/').join('|/|')
+  str = str.split('(').join('(|')
+  str = str.split(')').join('|)')
+  return str.split('|')
+}
+
+// 后序表达式计算及动画
+function getResult(arr) {
+  // 模拟栈 存储运算数字
+  let stack = new Stack()
+  init()
+  $('.V_second').hide()
+  $('.V_three').show()
+  // 遍历数组为原始数组创建div
+  for(i = 0 ; i < arr.length; i++){
+    $('<div/>').text(arr[i]).appendTo($origin)
+  } 
+  i=0
+  window.time2 = setInterval(function(){
+    if(i>=arr.length){
+        clearInterval(window.time2)
+    }
+    let item = arr[i]
+    $('#origin>div:first-child').fadeOut(step*0.3,function(){
+        $(this).remove()
+    })
+    if(!isNaN(Number(item))) { // 数字直接入栈
+      $(".V_three p").eq(0).addClass('striking').siblings("p").removeClass('striking')
+      stack.in(item)
+      // 创建div放入堆栈里
+      $('<div/>').text(item).appendTo($stack)
+    } else { // 遇到操作符 则拿出栈顶的两个元素 进行运算 并将运算结果入栈
+      $(".V_three p").eq(1).addClass('striking').siblings("p").removeClass('striking')
+       let tempRes = 0
+       let a = Number(stack.out())
+       let b = Number(stack.out())
+        switch (item) {
+         case '+': tempRes = b + a; break;
+         case '-': tempRes = b - a; break;
+         case '*': tempRes = b * a; break;
+         case '/': tempRes = b / a; break;
+         default : throw new Error('操作符有误')
+        }
+        $('#stack>div:nth-last-child(-n+2)').fadeOut(step*0.3,function(){
+          $(this).remove()
+        })
+        $('<div/>').text(tempRes).appendTo($stack)
+        stack.in(tempRes)
+    }
+    i++
+  },step)
+  return stack.out()
+}
+
+function init(){
+  $('#origin>div').remove()
+  $('#stack>div').remove()
+  $('#arr>div').remove()
+}
+// dom中的堆栈
+var $stack = $('#stack')
+// dom中的数组
+var $arr = $('#arr')
+// dom中的原始表达式
+var $origin = $('#origin')
+// 动画速度
+var step = 1000
+// 中序表达式
+var InfixExp=''
+//后序表达式
+var postfixExp=''
+//========================================================================
+//输出
+$('#btn1').click(function(){
+    let InfixExp = $('#text').val()
+    transform(InfixExp)   
+})
+
+$('#btn2').click(function(){
+    console.log(postfixExp)
+    getResult(postfixExp)
+})
+//=============================================================================
+//控制速度
+ $('#speed').click(function(){
+    step= (step*0.5>=500)? step*0.5 : 500
+ })
+$('#slow').click(function(){
+    step= (step*2<=2000)? step*2 : 2000
+})
+</script>
+</body>
+</html>

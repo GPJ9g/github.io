@@ -1,0 +1,153 @@
+
+.icon {
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.card-pannel {
+  margin-bottom: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.pannel-title {
+  line-height: 1;
+  margin: 18px 0 12px;
+}
+
+.pannel-shadow {
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+  box-sizing: border-box;
+  background: #fff;
+  color: #1a1a1a
+}
+
+.pannel-shadow+.pannel-shadow {
+  margin-top: 12px;
+}
+
+.text-white {
+  color: #fff
+}
+
+.text-black {
+  color: #333;
+}
+
+.text-gray {
+  color: gray
+}
+
+.text-blue {
+  color: #0077BB
+}
+.text-green {
+  color: #8ab36d
+}
+.text-red {
+  color: #fb6053
+}
+
+.hand {
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center
+}
+
+.text-right {
+  text-align: right
+}
+
+.no-wrap {
+  white-space: nowrap
+}
+
+/* .offset-1{
+  margin: @base-offset + @osNum * 2;
+}
+.offset-left-1 {
+  margin-left: @base-offset + @osNum * 2;
+}
+.offset-right-1 {
+  margin-right: @base-offset + @osNum * 2;
+}
+.offset-bottom-@{osNum} {
+  margin-bottom: @base-offset + @osNum * 2;
+}
+.offset-top-@{osNum} {
+  margin-top: @base-offset + @osNum * 2;
+} */
+
+.k-box {
+  padding: 12px 10px;
+}
+.fx-cell {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.fx-cell-bd {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.fx-jc-ct {
+  justify-content: center;
+}
+
+.fx-jc-sb {
+  justify-content: space-between;
+}
+
+.fx-jc-ed {
+  justify-content: flex-end;
+}
+
+.fx-ai-ct {
+  align-items: center;
+}
+
+.fx-box {
+  padding: 12px 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  color: #fff;
+  font-size: 14px;
+  display: inline-block
+}
+
+.btn-red {
+  background: #fb6053;
+}
+
+.btn-blue {
+  background: #8ab36d;
+}
+
+
+
+.form-title {
+  width: 100px;
+  display: inline-block;
+}
+.form-input {
+  height: 33px;
+  line-height: 33px;
+  outline: none;
+  text-indent: 12px;
+  border: 1px solid #c9d8db;
+}
+
+.offset-right-4{
+  margin-right: 16px
+}

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard &laquo; Admin</title>
+  <style>
+    *{
+    	margin: 0;
+    	padding: 0;
+    }
+	#d1 {
+		width: 800px;
+		height: 400px;
+		background: yellow;
+		position:absolute;
+    left: 50%;
+    margin-left: -400px;
+    top: 50%;
+    margin-top: -200px;
+	}
+	#u1{
+		position: absolute;
+		bottom: 0;
+	}
+	#d1 li {
+		display: inline-block;
+		list-style: none;
+		margin-left: 15px;
+		width: 40px;
+		height: 20px;
+		background: red;
+	}
+  </style>
+</head>
+<body>
+   <div id="d1">
+   		<ul id = "u1"></ul>	 
+   </div>
+  <script src="/static/assets/vendors/jquery/jquery.js"></script>
+  <script>
+   let arr = [1,2,3,5,10,4,2]
+   for (let i = 0 ; i < arr.length ; i++){
+   	 $("<li />").css({height:(arr[i])*10+'px'}).appendTo($("#u1"))
+   }
+   let list = $('#u1 li')
+
+   for (let i = 0 ; i < arr.length ; i++){
+   	console.log(i)
+   }
+
+  </script>
+</body>
+</html>
